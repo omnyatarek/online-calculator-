@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./static/style.css">
+    <!-- Add Math.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.1.0/math.js"></script>
+</head>
+<body>
+<div class="container" id="calcu">
+    <div class="upper">
+       <input type="text" id="result" readonly>
+    </div>
+    <div class="content">
+        <div class="buttons">
+            <!-- First row -->
+            <input type="button" value="7" onclick="dis('7')" onkeydown="myFunction(event)">
+            <input type="button" value="8" onclick="dis('8')" onkeydown="myFunction(event)">
+            <input type="button" value="9" onclick="dis('9')" onkeydown="myFunction(event)">
+            <input type="button" value="/" onclick="dis('/')" onkeydown="myFunction(event)">
+            <!-- Second row -->
+            <input type="button" value="4" onclick="dis('4')" onkeydown="myFunction(event)">
+            <input type="button" value="5" onclick="dis('5')" onkeydown="myFunction(event)">
+            <input type="button" value="6" onclick="dis('6')" onkeydown="myFunction(event)">
+            <input type="button" value="*" onclick="dis('*')" onkeydown="myFunction(event)">
+            <!-- Third row -->
+            <input type="button" value="1" onclick="dis('1')" onkeydown="myFunction(event)">
+            <input type="button" value="2" onclick="dis('2')" onkeydown="myFunction(event)">
+            <input type="button" value="3" onclick="dis('3')" onkeydown="myFunction(event)">
+            <input type="button" value="-" onclick="dis('-')" onkeydown="myFunction(event)">
+            <!-- Fourth row -->
+            <input type="button" value="0" onclick="dis('0')" onkeydown="myFunction(event)">
+            <input type="button" value="." onclick="dis('.')">
+            <input type="button" value="=" onclick="solve()">
+            <input type="button" value="+" onclick="dis('+')" onkeydown="myFunction(event)">
+        </div>
+    </div>
+</div>
+
+<script> 
+    // Function that display value 
+    function dis(val) { 
+        document.getElementById("result").value += val;
+    } 
+
+    function myFunction(event) { 
+        if (event.key == '0' || event.key == '1' 
+            || event.key == '2' || event.key == '3' 
+            || event.key == '4' || event.key == '5' 
+            || event.key == '6' || event.key == '7' 
+            || event.key == '8' || event.key == '9' 
+            || event.key == '+' || event.key == '-' 
+            || event.key == '*' || event.key == '/') 
+            document.getElementById("result").value += event.key; 
+    } 
+
+    var cal = document.getElementById("calcu"); 
+    cal.onkeyup = function (event) { 
+        if (event.keyCode === 13) { 
+            console.log("Enter"); 
+            let x = document.getElementById("result").value 
+            console.log(x); 
+            solve(); 
+        } 
+    } 
+
+    // Function that evaluates the digit and return result 
+    function solve() { 
+        let x = document.getElementById("result").value;
+        let y = math.evaluate(x);  // This will work now with the Math.js library included
+        document.getElementById("result").value = y;
+    } 
+</script> 
+</body>
+</html>
